@@ -13,9 +13,14 @@ public class Blockchain {
         Block genesisBlock = BlockHelper.createBlock("The is the Genesis Block.", "0", new Date());
         genesisBlock.mineBlock(prefix);
         blockchain.add(genesisBlock);
+
         Block block1 = BlockHelper.createBlock("The is the First Block.", genesisBlock.getHash(), new Date());
         block1.mineBlock(prefix);
         blockchain.add(block1);
+
+        Block block2 = BlockHelper.createBlock("The is the First Block.", block1.getHash(), new Date());
+        block2.mineBlock(prefix);
+        blockchain.add(block2);
 
         blockchain.forEach(block -> System.out.println(block.getHash()));
 
