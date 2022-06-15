@@ -1,16 +1,23 @@
 import chainqt3.blockchain.mavenlibrary.Block;
 import chainqt3.blockchain.mavenlibrary.BlockHelper;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class Blockchain {
     public static void main(String[] args) {
-        Block block1 = BlockHelper.createBlock(0, new String[]{"BTC: 1", "ETH: 1"});
-        Block block2 = BlockHelper.createBlock(block1.getBlockHash(), new String[]{"BTC: 10", "ETH: 10"});
-        Block block3 = BlockHelper.createBlock(block2.getBlockHash(), new String[]{"BTC: 100", "ETH: 100"});
-        Block block4 = BlockHelper.createBlock(block3.getBlockHash(), new String[]{"BTC: 1000", "ETH: 1000"});
+        List<Block> blockchain = new ArrayList<>();
+        final int prefix = 4;
 
-        System.out.println(block1.getBlockHash());
-        System.out.println(block2.getBlockHash());
-        System.out.println(block3.getBlockHash());
-        System.out.println(block4.getBlockHash());
+        Block genesisBlock = BlockHelper.createBlock("The is the Genesis Block.", "0", new Date());
+        genesisBlock.mineBlock(prefix);
+        blockchain.add(genesisBlock);
+        Block block1 = BlockHelper.createBlock("The is the First Block.", genesisBlock.getHash(), new Date());
+        block1.mineBlock(prefix);
+        blockchain.add(block1);
+
+        blockchain.forEach(block -> System.out.println(block.getHash()));
+
     }
 }
