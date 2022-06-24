@@ -27,9 +27,9 @@ public class BlockFrost {
         Account senderAccount = new Account(Networks.testnet(), mnemonic1);
         Account receiverAccount = new Account(Networks.testnet(), mnemonic2);
 
-        System.out.println("senderAccount");
+        System.out.println("senderAccount ");
         System.out.println(senderAccount);
-        System.out.println("receiverAccount");
+        System.out.println("receiverAccount ");
         System.out.println(receiverAccount);
 
         BackendService backendService = new BFBackendService(Constants.BLOCKFROST_TESTNET_URL, blockfrost_api_key_secret);
